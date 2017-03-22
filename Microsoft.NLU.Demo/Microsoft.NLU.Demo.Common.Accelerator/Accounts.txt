@@ -1,0 +1,16 @@
+﻿
+
+BingSpeech:
+Key: {BingSpeech API Key}
+
+WeatherService:
+Key: {Weather Service API Key}
+
+LUIS KEY
+{LUIS API Key}
+
+LUIS EN
+{LUIS EN Model Subscription ID}
+
+LUIS PT
+{LUIS PT Model Subscription ID}
