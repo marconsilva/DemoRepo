@@ -9,6 +9,11 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <MediaElement Grid.Row="4" x:Name="AudioPlayer"></MediaElement>
-        <Button x:Name="capturebutton" Click="capturebutton_Click" Content="capture" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="StateDisplayBlock" TextAlignment="Center" Margin="0 0 0 20"/>
+            <Button x:Name="capturebutton" Height="100" Width="200" Click="capturebutton_Click" Content="capture" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+            <TextBlock Margin="0 20 0 0"><Run Text="Input: "/><Run x:Name="InputTextDisplayBlock"/></TextBlock>
+            <TextBlock Margin="0 20 0 0"><Run Text="Intent: "/><Run x:Name="IntentDisplayBlock"/></TextBlock>
+        </StackPanel>
     </Grid>
 </Page>

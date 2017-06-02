@@ -72,19 +72,26 @@ namespace Microsoft.NLU.Demo.AppDemoFinalEN
 
             if (textToSpeachResult == null || textToSpeachResult.IsError)
             {
+                InputTextDisplayBlock.Text = "*ERROR*";
                 await audioPlaybackManager.PlayAudio(await bingSpeechManager.GetAudio(outputMessagesManager.GetUnknownIntentOutput()));
             }
             else
             {
+                InputTextDisplayBlock.Text = textToSpeachResult.SpokenText;
                 await ProcessIntent(await luisManager.GetIntent(textToSpeachResult.SpokenText));
             }
             gpioManager.TurnLedOff();
+            StateDisplayBlock.Text = "Done";
         }
 
         private async Task ProcessIntent(LuisResult luisResult)
         {
+            IntentDisplayBlock.Text = luisResult.TopScoringIntent.Name;
             switch (luisResult.TopScoringIntent.Name.ToLowerInvariant())
             {
+                case "greeting":
+                    await audioPlaybackManager.PlayAudio(await bingSpeechManager.GetAudio(outputMessagesManager.GreetingIntentOutput()));
+                    break;
                 case "lightsoff":
                     gpioManager.TurnLightOff();
                     await audioPlaybackManager.PlayAudio(await bingSpeechManager.GetAudio(outputMessagesManager.GetLightsOutIntentOutput()));
@@ -155,9 +162,15 @@ namespace Microsoft.NLU.Demo.AppDemoFinalEN
         {
             isCapturing = !isCapturing;
             if (isCapturing)
+            {
+                StateDisplayBlock.Text = "Capturing";
                 await StartCapture();
+            }
             else
+            {
+                StateDisplayBlock.Text = "Processing";
                 await StopCapture();
+            }
         }
     }
 }

@@ -142,7 +142,7 @@ namespace Microsoft.NLU.Demo.Common.Accelerator
             {
                 client.BaseAddress = new Uri("https://api.cognitive.microsoft.com");
                 client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "{BingSpeech API Key}");
+                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "d3fa24cee40c4841875668f9d4dda93c");
                 try
                 {
                     var response = await client.PostAsync("https://api.cognitive.microsoft.com/sts/v1.0/issueToken", null);

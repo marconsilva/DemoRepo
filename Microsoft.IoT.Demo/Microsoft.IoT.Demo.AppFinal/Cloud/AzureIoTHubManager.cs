@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Devices.Tpm;
 using Microsoft.Azure.Devices.Client;
 using Windows.UI.Xaml;
+using Newtonsoft.Json;
 
 namespace Microsoft.IoT.Demo.AppFinal.Cloud
 {
@@ -38,7 +37,7 @@ namespace Microsoft.IoT.Demo.AppFinal.Cloud
 
         public async Task SendButtonEvent(bool isPressed)
         {
-            string dataBuffer = Newtonsoft.Json.JsonConvert.SerializeObject(
+            string dataBuffer = JsonConvert.SerializeObject(
                 new { InputSensor = "Button", Value=isPressed ? "Pressed":"Relesed" });
             var eventMessage = new Message(Encoding.UTF8.GetBytes(dataBuffer));
             await deviceClient.SendEventAsync(eventMessage);

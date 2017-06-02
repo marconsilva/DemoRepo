@@ -49,6 +49,7 @@ namespace Microsoft.IoT.Demo.AppFinal
 
             simpleLed = new SimpleLed();
             simpleLed.Initialize(controlerManager, PinConfiguration.SimpleLedPin);
+            simpleLed.SetLedState(false);
 
             singleButton = new SingleButton();
             singleButton.Initialize(controlerManager, PinConfiguration.SingleButtonPin);
@@ -57,6 +58,7 @@ namespace Microsoft.IoT.Demo.AppFinal
 
             activeBuzzer = new ActiveBuzzer();
             activeBuzzer.Initialize(controlerManager, PinConfiguration.ActiveBuzzerPin);
+            activeBuzzer.SetBuzzerState(false);
 
             rgbLed = new RGBLed();
             rgbLed.Initialize(controlerManager, PinConfiguration.RedRGBLedPin, PinConfiguration.BlueRGBLedPin, PinConfiguration.GreenRGBLedPin);
@@ -65,13 +67,15 @@ namespace Microsoft.IoT.Demo.AppFinal
             azureIoTHubManager = new AzureIoTHubManager();
             azureIoTHubManager.Init(0);
             azureIoTHubManager.MessageReceived += AzureIoTHubManager_MessageReceived;
+
+
         }
 
         private void AzureIoTHubManager_MessageReceived(object sender, IoTHhubEventRecievedMessage e)
         {
             if (!e.Properties.ContainsKey("sensorName"))
                 return;
-
+            
             var sensorName = e.Properties["sensorName"];
             switch (sensorName.ToLowerInvariant())
             {

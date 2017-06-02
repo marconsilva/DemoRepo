@@ -28,6 +28,18 @@ namespace Microsoft.NLU.Demo.Common.Accelerator
             }
         }
 
+        public string GreetingIntentOutput()
+        {
+            switch (language)
+            {
+                case OutputMessagesManagerLanguage.en_US:
+                    return "Hello, I don't know my name but I'm pleased to meet you!";
+                case OutputMessagesManagerLanguage.pt_PT:
+                default:
+                    return "Olá, eu não sei como me chamo mas é um prazer conhecer-te!";
+            }
+        }
+
         public string GetLightsOutIntentOutput()
         {
             switch (language)
@@ -124,7 +136,7 @@ namespace Microsoft.NLU.Demo.Common.Accelerator
 
         public string GetAgeValueMissingMessage()
         {
-            return language == OutputMessagesManagerLanguage.en_US ? "I didn't get your age, could you repeat?" : "Não entendi qual a sua idade";
+            return language == OutputMessagesManagerLanguage.en_US ? "I didn't get your age, could you repeat?" : "Não entendi qual é a tua idade";
         }
 
         public string GetAgeMessage(string value)
